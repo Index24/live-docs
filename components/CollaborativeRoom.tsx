@@ -8,7 +8,6 @@ import Loader from "./Loader";
 import ActiveCollaborators from "./ActiveCollaborators";
 import { KeyboardEventHandler, useEffect, useRef, useState } from "react";
 import { Input } from "./ui/input";
-import { currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { updateDocument } from "@/lib/actions/room.actions";
 
@@ -107,7 +106,7 @@ const CollaborativeRoom = ({ roomId, roomMetadata, currentUserType }: Collaborat
               </SignedIn>
               </div>
             </Header>
-            <Editor />
+            <Editor roomId={roomId} currentUserType={currentUserType} />
           </div>
         </ClientSideSuspense>
       </RoomProvider>
