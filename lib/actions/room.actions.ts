@@ -22,7 +22,7 @@ export const createDocument = async ({userId, email}: CreateDocumentParams) => {
     const room = await liveblocks.createRoom(roomId, {
       metadata,
       usersAccesses,
-      defaultAccesses: []
+      defaultAccesses: ['room:write']
     });
     
     revalidatePath('/')
@@ -31,5 +31,22 @@ export const createDocument = async ({userId, email}: CreateDocumentParams) => {
   } catch (error) {
     console.error('Error creating room', error)
     return null
+  }
+}
+
+export const getDocument = async ({ roomId, userId }: {roomId: string, userId: string}) => {
+  try {
+    const room = await liveblocks.getRoom(roomId)
+
+    // TOOD: Bring back the access control
+    // const hasAccess = Object.keys(room.usersAccesses).includes(userId)
+
+    // if (!hasAccess) {
+    //   throw new Error('User does not have access to this room')
+    // }
+
+    return parseStringify(room)
+  } catch (error) {
+    console.error('Error getting room', error)
   }
 }
