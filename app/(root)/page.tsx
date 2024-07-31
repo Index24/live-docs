@@ -1,4 +1,5 @@
 import AddDocumentButton from "@/components/AddDocumentButton"
+import { DeleteModal } from "@/components/DeleteModal"
 import Header from "@/components/Header"
 import { getDocuments } from "@/lib/actions/room.actions"
 import { dateConverter } from "@/lib/utils"
@@ -45,7 +46,7 @@ const Home = async () => {
                     <p className="text-sm font-light text-blue-100">Created about {dateConverter(createdAt)}</p>
                   </div>
                 </Link>
-                {/* TODO: detele button */}
+                <DeleteModal roomId={id} />
               </li>
             ))}
           </ul>
